@@ -1,6 +1,9 @@
 baseURL = "https://example.org"
 
-disableKinds = ["page", "section", "taxonomy", "term"]
+disableKinds = ["section", "taxonomy", "term"]
+
+enableInlineShortcodes = true
+
 
 [module]
   [module.hugoVersion]

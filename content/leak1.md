@@ -6,7 +6,7 @@ title: Leak1
 * Click the red button, all the `x-for` components are removed.
 * Click the garbage icon in the profiler to force GC.
 * Click on the round button to create a new profile.
-* Filer by `Detached HTMLTemplateElement`
+* Filter by `Detached HTMLTemplateElement`
 
 You should now see 20 detached elements. If you click on one, it points to `evaluatorMemo`.
 

@@ -2,6 +2,11 @@
   <article class="prose lg:prose-xl">
     <h1 class="text-4xl">
       {{ .Title }}
+      <small class="text-xs">
+        <a href="{{ printf `https://raw.githubusercontent.com/bep/alpine-testlab/master/content/%s` .File.Path | safeURL }}" target="_blank">
+          Source
+        </a>
+      </small>
     </h1>
     {{ .Content }}
   </article>

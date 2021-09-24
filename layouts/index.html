@@ -3,6 +3,14 @@
     <h1 class="text-4xl">
       {{ .Title }}
     </h1>
-    {{ .Content }}
+    <ol>
+      {{ range site.RegularPages }}
+        <li>
+          <a href="{{ .RelPermalink }}">
+            {{ .LinkTitle }}
+          </a>
+        </li>
+      {{ end }}
+    </ol>
   </article>
 {{ end }}

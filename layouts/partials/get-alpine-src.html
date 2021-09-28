@@ -1,5 +1,10 @@
+{{ $p := . }}
+{{ with .Params.patch_from }}
+  {{ $p = site.GetPage . }}
+{{ end }}
+
 {{ $src := "https://unpkg.com/alpinejs@3.x.x/dist/cdn.js" | safeURL }}
-{{ $r := .Resources.GetMatch "*cdn.js" }}
+{{ $r := $p.Resources.GetMatch "*cdn.js" }}
 {{ with $r }}
   {{ $src = $r.RelPermalink }}
 {{ end }}

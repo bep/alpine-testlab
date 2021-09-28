@@ -4,6 +4,17 @@ title: Leak1 Patched
 
 Note: This version has this patch applied: https://github.com/bep/alpine/commit/c3fbc6319f2b959bfc17a67ce21677fcec386d7f -- and should give 0 detached elements.
 
+The patch is something ala this:
+
+```js
+export function cleanEvaluatorMemo() {
+    Object.keys(evaluatorMemo).forEach(key => {
+        delete evaluatorMemo[key];
+      })
+}
+
+```
+
 * Open the Memory profiler in Chrome
 * Click the red button, all the `x-for` components are removed.
 * Click the garbage icon in the profiler to force GC.

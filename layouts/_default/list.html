@@ -4,7 +4,7 @@
       {{ .Title }}
     </h1>
     <ol>
-      {{ range site.RegularPages }}
+      {{ range .Pages }}
         <li>
           <a href="{{ .RelPermalink }}">
             {{ .LinkTitle }}

@@ -14,7 +14,7 @@
       {{ $styles = $styles | minify | fingerprint | resources.PostProcess }}
     {{ end }}
     <link href="{{ $styles.RelPermalink }}" rel="stylesheet" />
-    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.js"></script>
+    <script defer src="{{ partial `get-alpine-src.html` . }}"></script>
   </head>
   <body class="my-10">
     <div class="container px-4 lg:mx-auto">

@@ -1,5 +1,5 @@
 ---
-title: Leak1
+title: Leak1 CDN
 ---
 
 * Open the Memory profiler in Chrome

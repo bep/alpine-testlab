@@ -1,19 +1,16 @@
 ---
-title: x-data magics leak
-patch_from: "leak1/patched"
+title: x-data magics patch2
 ---
 
-Note that this runs with a patch for #2126.
+Note that this runs with [this patch](https://github.com/bep/alpine/commit/9dfe0c4b3bd5aeebd802e55910df79ed5ad07ea6) on top of all the previous patches in that branch -- which makes the `$watch` "element bound".
 
-* Open the Memory profiler in Chrome.
+* Open the Memory profiler in Chrome
 * Click the red button, all the components below are removed.
 * Click the garbage icon in the profiler to force GC.
 * Click on the round button to create a new profile.
 * Filter by  Detached HTMLDivElement`
 
-You should now see 20 detached elements. If you click on one, it points to `get $el` and similar.
-
-This story continues in [patch2](../patch2).
+You should now see 0 detached elements. 
 
 {{< main.inline >}}
 <script>

@@ -2,7 +2,7 @@
 title: x-data magics patch1
 ---
 
-Note that this runs with this patch: https://github.com/bep/alpine/commit/6c14dfc245d063382d80dfd5518bb8ad07edf017
+Note that this runs with [this patch](https://github.com/bep/alpine/commit/6c14dfc245d063382d80dfd5518bb8ad07edf017) on top of all the previous patch in that branch -- adding a cleanup step for `injectMagics`.
 
 * Open the Memory profiler in Chrome
 * Click the red button, all the components below are removed.
@@ -12,7 +12,10 @@ Note that this runs with this patch: https://github.com/bep/alpine/commit/6c14df
 
 You should now see 20 detached elements. If you click on one, it points to `el > raw> > targetMap > store ...` and similar.
 
-This means that this still leaks, but differently than in [patch1](../patch1)
+This means that this still leaks, but differently than in [patch1](../patch1).
+
+This story continues in [patch3](../patch3).
+
 
 {{< main.inline >}}
 <script>

@@ -2,13 +2,7 @@
 title: x-data magics patch2
 ---
 
-Note that this runs with [this patch](https://github.com/bep/alpine/commit/9dfe0c4b3bd5aeebd802e55910df79ed5ad07ea6) on top of all the previous patches in that branch -- which makes the `$watch` "element bound".
-
-* Open the Memory profiler in Chrome
-* Click the red button, all the components below are removed.
-* Click the garbage icon in the profiler to force GC.
-* Click on the round button to create a new profile.
-* Filter by  Detached HTMLDivElement`
+{{% instructions %}}
 
 You should now see 0 detached elements. 
 
@@ -25,8 +19,9 @@ You should now see 0 detached elements.
     })
 </script>
 
- <button x-data class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" @click="document.querySelectorAll('.removeme').forEach(e => e.remove());">Remove Components</button>
 {{< /main.inline >}}
+
+{{< create-leak >}}
 
 ## To be removed
 

@@ -1,17 +1,14 @@
 ---
 title: x-data magics leak
 patch_from: "leak1/patched"
+weight: 20
 ---
 
 Note that this runs with a patch for #2126.
 
-* Open the Memory profiler in Chrome.
-* Click the red button, all the components below are removed.
-* Click the garbage icon in the profiler to force GC.
-* Click on the round button to create a new profile.
-* Filter by  Detached HTMLDivElement`
+{{% instructions %}}
 
-You should now see 20 detached elements. If you click on one, it points to `get $el` and similar.
+There, you will see detached elements matching the below. If you click on one, it points to `get $el` and similar.
 
 This story continues in [patch2](../patch2).
 
@@ -27,9 +24,10 @@ This story continues in [patch2](../patch2).
         })
     })
 </script>
-
- <button x-data class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" @click="document.querySelectorAll('.removeme').forEach(e => e.remove());">Remove Components</button>
 {{< /main.inline >}}
+
+{{< create-leak >}}
+
 
 ## To be removed
 

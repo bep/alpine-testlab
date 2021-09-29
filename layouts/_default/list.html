@@ -1,5 +1,12 @@
 {{ define "main" }}
   <article class="prose lg:prose-xl">
+    <nav class="inline-flex space-x-2 mb-4">
+      {{ with .Parent }}
+        <a href="{{ .RelPermalink }}">
+          Up
+        </a>
+      {{ end }}
+    </nav>
     <h1 class="text-4xl">
       {{ .Title }}
     </h1>

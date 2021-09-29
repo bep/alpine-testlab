@@ -1,39 +1,40 @@
 ---
-title: Leak3 CDN
-patch_from: "leak2-magic/patch2"
+title: Last survives, CDN
+weight: 10
 ---
 
-* Open the Memory profiler in Chrome
-* Click the red button, all the `x-for` components are removed.
-* Click the garbage icon in the profiler to force GC.
-* Click on the round button to create a new profile.
-* Filter by `Detached HTMLTemplateElement`
+{{% instructions %}}
 
-You should now see 20 detached elements. If you click on one, it points to `evaluatorMemo`.
+The components to be removed looks like this:
 
-{{< main.inline >}}
-<script>
-    document.addEventListener('alpine:init', () => {
-        Alpine.store('mystore', {
-           images: ['olavstedje.jpg', "claudia.jpg"],
- 
-           
-        })
-    })
-</script>
- <button x-data class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" @click="document.querySelectorAll('.removeme').forEach(e => e.remove());">Remove Components</button>
-{{< /main.inline >}}
+```html
+<div class="removeme" x-data >
+    This should be removed.
+</div>
+<ol class="removeme" x-data>
+    <li>This should be removed.</li>
+</ol>
+<ul class="removeme" x-data>
+    <li>This should be removed.</li>
+</ul>
+```
+
+All but the last component is removed correctly (and yes, I have tried switching them around).
+
+{{< create-leak >}}
 
 ## To be removed
 
 {{< c1.inline >}}
-{{ range seq 20 }}
-{{ $v := printf "color%d" . }}
-<div class="removeme" x-data="{}">
-  <template x-for="image in $store.mystore.images">
-    <img class="p-4 border-4 bg-green-300" :src="image" @load="$event.target.classList.remove('bg-green-300')">
-  </template>
+
+<div class="removeme" x-data >
+    This should be removed.
 </div>
-{{ end }}
+<ol class="removeme" x-data>
+    <li>This should be removed.</li>
+</ol>
+<ul class="removeme" x-data>
+    <li>This should be removed.</li>
+</ul>
 {{< /c1.inline >}}
 

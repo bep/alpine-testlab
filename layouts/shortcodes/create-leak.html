@@ -1,0 +1,31 @@
+<script>
+  document.addEventListener('alpine:initialized', () => {
+  console.log("Running Alpine Version", window.Alpine.version)
+  })
+  function walk(el, callback) {
+  callback(el);
+  let node = el.firstElementChild;
+  while (node) {
+  walk(node, callback, false);
+  node = node.nextElementSibling;
+  }
+  }
+  window.leakDetecor = new WeakSet();
+  window.watchEl = function(root) {
+  walk(root, (el) => {
+  this.leakDetecor.add(el)
+  })
+
+  }
+  window.checkLeaks = function() {
+  if(!window.gc) {
+  log.warn("window.gc() not available. Run GC manually in the memory profiler, then check the content of window.leakDetecor.")
+  return
+  }
+
+  setTimeout(() => { window.gc(); console.log("leakDetecor (should be empty):", window.leakDetecor) }, 1000)
+  }
+</script>
+<button x-data class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" @click="document.querySelectorAll('.removeme').forEach(e => {  watchEl(e); e.remove() }); checkLeaks();">
+  Remove Components
+</button>

@@ -1,14 +1,32 @@
 {{ define "main" }}
   <article class="prose lg:prose-xl">
+    <nav class="inline-flex space-x-2 mb-4">
+      {{ with .CurrentSection}}
+        <a href="{{ .RelPermalink }}">
+          Up
+        </a>
+      {{ end }}
+      {{ with .NextInSection}}
+        <a href="{{ .RelPermalink }}">
+          Prev
+        </a>
+      {{ end }}
+      {{ with .PrevInSection}}
+        <a href="{{ .RelPermalink }}">
+          Next
+        </a>
+      {{ end }}
+      
+    </nav>
     <h1 class="text-4xl">
       {{ .Title }}
-      <small class="text-xs font-normal">
-        <a class="mr-2" href="{{ printf `https://raw.githubusercontent.com/bep/alpine-testlab/master/content/%s` .File.Path | safeURL }}" target="_blank">
-          Source
-        </a>
-        Alpine src: {{ partial `get-alpine-src.html` . }}
-      </small>
     </h1>
+    <small class="text-xs font-normal">
+      <a class="mr-2" href="{{ printf `https://raw.githubusercontent.com/bep/alpine-testlab/master/content/%s` .File.Path | safeURL }}" target="_blank">
+        Source
+      </a>
+      Alpine src: {{ partial `get-alpine-src.html` . }}
+    </small>
     {{ .Content }}
   </article>
 {{ end }}

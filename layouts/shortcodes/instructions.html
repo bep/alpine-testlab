@@ -1,0 +1,12 @@
+This is simplest to do with the `gc` method exposed in Chrome, e.g. by running it with these flags (alternatively is to manually do GC in Chrome's memory profiler and then check the content of `window.leakDetector` and/or the detached elements in profiler):
+
+```
+/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --js-flags="--expose-gc" --enable-memory-info
+```
+
+With your Chrome console open:
+
+* Click the red button.
+* Check the content of `leakDetector` (printed to console)
+
+You can also create a new memory profile in Chrome and filter by `Detached` elements. 

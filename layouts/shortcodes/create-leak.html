@@ -23,7 +23,7 @@
   return
   }
 
-  setTimeout(() => { window.gc(); console.log("leakDetecor (should be empty):", window.leakDetecor) }, 1000)
+  setTimeout(() => { window.gc(); console.log("leakDetecor (should be empty):"); console.dir(window.leakDetecor) }, 1000)
   }
 </script>
 <button x-data class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" @click="document.querySelectorAll('.removeme').forEach(e => {  watchEl(e); e.remove() }); checkLeaks();">
